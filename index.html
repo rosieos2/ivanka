@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEME Token</title>
+    <title>$IVANKA Token</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; }
@@ -14,16 +14,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
         .nav-logo { color: #fbbf24; font-size: 1.5rem; font-weight: bold; }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { color: white; text-decoration: none; }
-        .buy-btn { background: #dc2626; color: white; padding: 0.5rem 1rem; border-radius: 4px; border: none; }
+        .buy-btn { 
+            background: #dc2626; 
+            color: white; 
+            padding: 0.5rem 1rem; 
+            border-radius: 4px; 
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .buy-btn:hover {
+            background: #ef4444;
+        }
 
         .hero {
             background: #0a0a2e;
             color: white;
-            padding: 5rem 2rem;
+            padding: 8rem 2rem 5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -35,6 +50,7 @@
         .allocation {
             padding: 4rem 2rem;
             text-align: center;
+            background: #f8f8f8;
         }
         .allocation h2 { margin-bottom: 3rem; font-size: 2rem; }
         .allocation-grid {
@@ -45,12 +61,96 @@
             margin: 0 auto;
         }
         .allocation-item {
-            background: #f8f8f8;
+            background: white;
             padding: 2rem;
             border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .allocation-item:hover {
+            transform: translateY(-5px);
         }
         .allocation-item h3 { margin-bottom: 1rem; }
         .allocation-item p { color: #dc2626; font-size: 2rem; font-weight: bold; }
+
+        .features {
+            padding: 4rem 2rem;
+            background: white;
+        }
+        .features h2 { 
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-item {
+            padding: 2rem;
+            background: #f8f8f8;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .feature-item h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .roadmap {
+            padding: 4rem 2rem;
+            background: #0a0a2e;
+            color: white;
+        }
+        .roadmap h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .roadmap-item {
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .phase { 
+            color: #fbbf24;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .socials {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .social-btn {
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            background: #0a0a2e;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .social-btn:hover {
+            background: #dc2626;
+        }
 
         footer {
             background: #0a0a2e;
@@ -60,8 +160,20 @@
         }
         
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; }
-            .allocation-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero { 
+                flex-direction: column; 
+                text-align: center;
+                padding-top: 6rem;
+            }
+            .hero h1 { font-size: 3rem; }
+            .allocation-grid, .features-grid, .roadmap-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -70,10 +182,10 @@
         <div class="nav-logo">$IVANKA</div>
         <div class="nav-links">
             <a href="#">Home</a>
-            <a href="#">Pump.fun</a>
-            <a href="#">How to Buy</a>
-            <a href="#">More</a>
-            <button class="buy-btn">Buy Now</button>
+            <a href="https://pump.fun" target="_blank">Pump.fun</a>
+            <a href="#features">Features</a>
+            <a href="#roadmap">Roadmap</a>
+            <button class="buy-btn" onclick="window.open('https://pump.fun', '_blank')">Buy Now</button>
         </div>
     </nav>
 
@@ -107,8 +219,57 @@
         </div>
     </div>
 
+    <div class="features" id="features">
+        <h2>Features</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>Secure Contract</h3>
+                <p>Contract audited and verified on pump.fun</p>
+            </div>
+            <div class="feature-item">
+                <h3>Community Driven</h3>
+                <p>100% community-focused development and governance</p>
+            </div>
+            <div class="feature-item">
+                <h3>Fair Launch</h3>
+                <p>No presale, no private allocation. Fair distribution for everyone</p>
+            </div>
+            <div class="feature-item">
+                <h3>Liquidity Locked</h3>
+                <p>99% of tokens locked in liquidity for security</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="roadmap" id="roadmap">
+        <h2>Roadmap</h2>
+        <div class="roadmap-grid">
+            <div class="roadmap-item">
+                <div class="phase">Phase 1</div>
+                <p>Launch on pump.fun<br>Community Building<br>Social Media Presence</p>
+            </div>
+            <div class="roadmap-item">
+                <div class="phase">Phase 2</div>
+                <p>Marketing Campaign<br>CEX Listings<br>Partnership Announcements</p>
+            </div>
+            <div class="roadmap-item">
+                <div class="phase">Phase 3</div>
+                <p>NFT Collection<br>DAO Governance<br>Global Expansion</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="socials">
+        <h2>Join Our Community</h2>
+        <div class="social-links">
+            <a href="#" class="social-btn">Telegram</a>
+            <a href="#" class="social-btn">Twitter</a>
+            <a href="#" class="social-btn">Discord</a>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 MEME Token. All rights reserved.</p>
+        <p>&copy; 2025 IVANKA TOKEN. All rights reserved.</p>
     </footer>
 </body>
 </html>
