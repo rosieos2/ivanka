@@ -202,7 +202,54 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .ca-box {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .ca-box span {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .ca-box code {
+            background: rgba(0,0,0,0.2);
+            padding: 0.5rem;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .copy-btn {
+            background: #fbbf24;
+            color: #0a0a2e;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #f59e0b;
+        }
     </style>
+    <script>
+        function copyCA() {
+            const ca = document.getElementById('contract-address').innerText;
+            navigator.clipboard.writeText(ca);
+            const btn = document.querySelector('.copy-btn');
+            btn.innerText = 'Copied!';
+            setTimeout(() => btn.innerText = 'Copy CA', 2000);
+        }
+    </script>
 </head>
 <body>
     <nav class="nav">
@@ -222,6 +269,11 @@
                 IVANKA TOKEN
             </h1>
             <p>Join the Community. This is History in the Making!</p>
+            <div class="ca-box">
+                <span>CA: </span>
+                <code id="contract-address">SOON</code>
+                <button class="copy-btn" onclick="copyCA()">Copy CA</button>
+            </div>
             <button class="buy-btn" onclick="window.open('https://pump.fun', '_blank')">Buy Now</button>
         </div>
         <div class="hero-image">
