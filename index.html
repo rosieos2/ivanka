@@ -6,11 +6,14 @@
     <title>$IVANKA Token</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; }
+        body { 
+            font-family: 'Arial', sans-serif;
+            background: #0a0a2e;
+        }
         
         .nav {
-            background: #0a0a2e;
-            padding: 1rem;
+            background: rgba(10, 10, 46, 0.95);
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -18,41 +21,119 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .nav-logo { color: #fbbf24; font-size: 1.5rem; font-weight: bold; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; }
-        .buy-btn { 
-            background: #dc2626; 
+        
+        .nav-logo { 
+            color: #fbbf24; 
+            font-size: 2rem; 
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 3rem; 
+            align-items: center;
+        }
+        
+        .nav-links a { 
             color: white; 
-            padding: 0.5rem 1rem; 
-            border-radius: 4px; 
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #fbbf24;
+        }
+        
+        .buy-btn { 
+            background: #dc2626;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
+        
         .buy-btn:hover {
             background: #ef4444;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
         }
 
         .hero {
-            background: #0a0a2e;
+            min-height: 100vh;
             color: white;
-            padding: 8rem 2rem 5rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4f 100%);
         }
-        .hero h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 1rem; }
-        .hero .official { color: #dc2626; }
-        .hero p { font-size: 1.5rem; }
         
-        .allocation {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: #f8f8f8;
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            padding-top: 80px;
         }
-        .allocation h2 { margin-bottom: 3rem; font-size: 2rem; }
+        
+        .hero h1 { 
+            font-size: 5rem; 
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero .official { 
+            color: #dc2626;
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+        
+        .hero p { 
+            font-size: 1.8rem;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-image {
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-image img {
+            max-width: 600px;
+            height: auto;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .allocation {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: white;
+        }
+        
+        .allocation h2 { 
+            margin-bottom: 3rem; 
+            font-size: 2.5rem;
+            color: #0a0a2e;
+        }
+        
         .allocation-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -60,119 +141,65 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+        
         .allocation-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: #f8f8f8;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
+        
         .allocation-item:hover {
             transform: translateY(-5px);
         }
-        .allocation-item h3 { margin-bottom: 1rem; }
-        .allocation-item p { color: #dc2626; font-size: 2rem; font-weight: bold; }
-
-        .features {
-            padding: 4rem 2rem;
-            background: white;
+        
+        .allocation-item h3 { 
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #0a0a2e;
         }
-        .features h2 { 
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2rem;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .feature-item {
-            padding: 2rem;
-            background: #f8f8f8;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .feature-item h3 {
+        
+        .allocation-item p { 
             color: #dc2626;
-            margin-bottom: 1rem;
-        }
-
-        .roadmap {
-            padding: 4rem 2rem;
-            background: #0a0a2e;
-            color: white;
-        }
-        .roadmap h2 {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2rem;
-        }
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .roadmap-item {
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            text-align: center;
-        }
-        .phase { 
-            color: #fbbf24;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .socials {
-            padding: 4rem 2rem;
-            background: white;
-            text-align: center;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .social-btn {
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            background: #0a0a2e;
-            color: white;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        .social-btn:hover {
-            background: #dc2626;
         }
 
         footer {
             background: #0a0a2e;
             color: white;
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            
             .hero { 
-                flex-direction: column; 
-                text-align: center;
-                padding-top: 6rem;
-            }
-            .hero h1 { font-size: 3rem; }
-            .allocation-grid, .features-grid, .roadmap-grid { 
-                grid-template-columns: 1fr; 
-            }
-            .social-links {
                 flex-direction: column;
-                align-items: center;
+                text-align: center;
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+            
+            .hero h1 { 
+                font-size: 3.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .hero-image img {
+                max-width: 100%;
+                margin-top: 2rem;
+            }
+            
+            .allocation-grid { 
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -181,24 +208,25 @@
     <nav class="nav">
         <div class="nav-logo">$IVANKA</div>
         <div class="nav-links">
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
             <a href="https://pump.fun" target="_blank">Pump.fun</a>
-            <a href="#features">Features</a>
-            <a href="#roadmap">Roadmap</a>
             <button class="buy-btn" onclick="window.open('https://pump.fun', '_blank')">Buy Now</button>
         </div>
     </nav>
 
-    <div class="hero">
-        <div>
+    <div class="hero" id="home">
+        <div class="hero-content">
             <h1>
                 THE ONLY<br>
                 <span class="official">OFFICIAL</span><br>
                 IVANKA TOKEN
             </h1>
             <p>Join the Community. This is History in the Making!</p>
+            <button class="buy-btn" onclick="window.open('https://pump.fun', '_blank')">Buy Now</button>
         </div>
-        <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/6791ac30fb998feb3e73ff89_hero.png" alt="Hero" width="500">
+        <div class="hero-image">
+            <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/6791ac30fb998feb3e73ff89_hero.png" alt="Hero">
+        </div>
     </div>
 
     <div class="allocation">
@@ -216,55 +244,6 @@
                 <h3>Liquidity Pool</h3>
                 <p>99%</p>
             </div>
-        </div>
-    </div>
-
-    <div class="features" id="features">
-        <h2>Features</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <h3>Secure Contract</h3>
-                <p>Contract audited and verified on pump.fun</p>
-            </div>
-            <div class="feature-item">
-                <h3>Community Driven</h3>
-                <p>100% community-focused development and governance</p>
-            </div>
-            <div class="feature-item">
-                <h3>Fair Launch</h3>
-                <p>No presale, no private allocation. Fair distribution for everyone</p>
-            </div>
-            <div class="feature-item">
-                <h3>Liquidity Locked</h3>
-                <p>99% of tokens locked in liquidity for security</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="roadmap" id="roadmap">
-        <h2>Roadmap</h2>
-        <div class="roadmap-grid">
-            <div class="roadmap-item">
-                <div class="phase">Phase 1</div>
-                <p>Launch on pump.fun<br>Community Building<br>Social Media Presence</p>
-            </div>
-            <div class="roadmap-item">
-                <div class="phase">Phase 2</div>
-                <p>Marketing Campaign<br>CEX Listings<br>Partnership Announcements</p>
-            </div>
-            <div class="roadmap-item">
-                <div class="phase">Phase 3</div>
-                <p>NFT Collection<br>DAO Governance<br>Global Expansion</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="socials">
-        <h2>Join Our Community</h2>
-        <div class="social-links">
-            <a href="#" class="social-btn">Telegram</a>
-            <a href="#" class="social-btn">Twitter</a>
-            <a href="#" class="social-btn">Discord</a>
         </div>
     </div>
 
